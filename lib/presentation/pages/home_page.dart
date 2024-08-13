@@ -35,25 +35,29 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: const Column(
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 24,
+        ),
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
                   child: InitialInfoCards(
-                    title: 'Find Food',
-                    icon: Icons.search,
+                    title: 'ORDER AGAIN',
                     color: BentoColors.primaryBlue,
+                    image: Image.asset('assets/images/order_again_icon.png'),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 12),
                 Expanded(
                   child: InitialInfoCards(
-                    title: 'Find Food',
-                    icon: Icons.search,
+                    title: 'LOCAL SHOP',
                     color: BentoColors.primaryBlue,
+                    image: Image.asset('assets/images/local_shop_icon.png'),
                   ),
                 ),
               ],

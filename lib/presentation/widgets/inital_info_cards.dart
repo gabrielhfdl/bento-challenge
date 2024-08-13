@@ -1,39 +1,56 @@
+import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class InitialInfoCards extends StatelessWidget {
   final String title;
-  final IconData icon;
   final Color color;
+  final Image image;
 
   const InitialInfoCards({
     super.key,
     required this.title,
-    required this.icon,
     required this.color,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      padding: const EdgeInsets.only(left: 12),
+      height: 80,
       decoration: BoxDecoration(
-        color: color,
+        color: BentoColors.primaryLightGreen,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 40, color: Colors.white),
-          const SizedBox(height: 10),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+      child: Row(children: [
+        Column(
+          children: [
+            const SizedBox(height: 24),
+            SizedBox(
+              width: 50,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: BentoColors.primaryBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+          ],
+        ),
+        const Spacer(),
+        Expanded(
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.bottomRight,
+                child: image,
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }
