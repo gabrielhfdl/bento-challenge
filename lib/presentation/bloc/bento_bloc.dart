@@ -13,8 +13,12 @@ class BentoBloc {
   BentoBloc(this._bentoUseCases);
 
   void getShopByCategory() async {
-    final shopByCategory = await _bentoUseCases.getListCategory();
-    _shopByCategorySubject.add(shopByCategory);
+    try {
+      final shopByCategory = await _bentoUseCases.getListCategory();
+      _shopByCategorySubject.add(shopByCategory);
+    } catch (e) {
+      _shopByCategorySubject.addError(e);
+    }
   }
 
   void dispose() {
