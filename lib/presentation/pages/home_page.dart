@@ -1,6 +1,11 @@
+import 'package:bento_challenge/data/model/shop_by_category_model.dart';
+import 'package:bento_challenge/presentation/bloc/bento_bloc.dart';
+import 'package:bento_challenge/presentation/widgets/carrousel_top_deal_cards.dart';
 import 'package:bento_challenge/presentation/widgets/inital_info_cards.dart';
+import 'package:bento_challenge/presentation/widgets/shop_by_category_section.dart';
 import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,8 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late BentoBloc _bentoBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bentoBloc = Provider.of<BentoBloc>(context, listen: false);
+      bentoBloc.getShopByCategory();
+    });
+  }
+
+  @override
+  void dispose() {
+    _bentoBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final _bentoBloc = Provider.of<BentoBloc>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -41,6 +64,7 @@ class _HomePageState extends State<HomePage> {
           top: 24,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +85,41 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            const CarouselWidget(),
+            const SizedBox(
+              height: 24,
+            ),
+            StreamBuilder<List<ShopByCategoryModel>>(
+              stream: _bentoBloc.shopByCategoryStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return SizedBox(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final category = snapshot.data![index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ShopByCategorySection(
+                            title: category.title,
+                            imageUrl: category.image,
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Erro: ${snapshot.error}'));
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
           ],
         ),
       ),

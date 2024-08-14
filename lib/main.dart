@@ -1,8 +1,13 @@
+import 'package:bento_challenge/core/provider/provider_bindings.dart';
 import 'package:bento_challenge/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: Providers.getBentoProviders(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

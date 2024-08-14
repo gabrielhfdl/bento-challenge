@@ -13,7 +13,7 @@ class ShopByCategoryModel {
     return ShopByCategoryModel(
       title: json['title'],
       image: json['image'],
-      backgroundColorHex: json['backgroundColorHex'],
+      backgroundColorHex: json['color'],
     );
   }
 }
