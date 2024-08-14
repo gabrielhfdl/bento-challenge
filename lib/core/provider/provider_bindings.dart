@@ -17,7 +17,7 @@ class Providers {
       ),
       Provider<BentoRepository>(
         create: (context) => BentoRepositoryImpl(
-          Provider.of<BentoDataSource>(context),
+          Provider.of<BentoDataSource>(context, listen: false),
         ),
       ),
       ProxyProvider<BentoRepository, BentoUseCasesImpl>(
