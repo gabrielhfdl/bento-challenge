@@ -16,6 +16,7 @@ dependencies:
   http: ^1.2.2
   rxdart: ^0.28.0
   provider: ^6.1.2
+  cached_network_image: ^3.0.0
 
 dev_dependencies:
   flutter_test:

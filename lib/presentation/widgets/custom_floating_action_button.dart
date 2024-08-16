@@ -21,7 +21,7 @@ class CustomFloatinActionButton extends StatelessWidget {
         shape: const CircleBorder(),
         child: const Icon(
           Icons.store,
-          color: Colors.lightGreen,
+          color: BentoColors.primaryLightGreen,
         ),
       ),
     );

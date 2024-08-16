@@ -1,4 +1,5 @@
 import 'package:bento_challenge/utils/bento_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ShopByCategorySection extends StatefulWidget {
@@ -36,7 +37,12 @@ class _ShopByCategorySectionState extends State<ShopByCategorySection> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
-              child: Image.network(widget.imageUrl),
+              child: CachedNetworkImage(
+                imageUrl: widget.imageUrl,
+                placeholder: (context, url) => const CircularProgressIndicator(
+                    color: BentoColors.primaryLightGreen),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
           ),
           const SizedBox(height: 8),

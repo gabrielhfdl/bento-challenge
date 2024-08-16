@@ -1,4 +1,5 @@
 import 'package:bento_challenge/utils/bento_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TodaySpecialHomeCard extends StatelessWidget {
@@ -30,10 +31,15 @@ class TodaySpecialHomeCard extends StatelessWidget {
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  imageUrl,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
                   height: 120,
                   fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                    color: BentoColors.primaryLightGreen,
+                  )),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
