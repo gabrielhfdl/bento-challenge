@@ -110,12 +110,12 @@ class _HomePageState extends State<HomePage> {
                   TopDealCard(
                     backgroundColor: BentoColors.lightGreen2,
                     image: Image.asset('assets/images/banana.png'),
-                    promotionItemDescription: 'FRESH BANANAS UP TO 20% OFF',
+                    promotionItemDescription: 'BANANA BUNCH UP TO 20% OFF',
                   ),
                   TopDealCard(
                     backgroundColor: BentoColors.lightGreen2,
                     image: Image.asset('assets/images/strawberry.png'),
-                    promotionItemDescription: 'FRESH STRAWBERRIES FF',
+                    promotionItemDescription: 'FRESH STRAWBERRY UP TO 10% OFF',
                   ),
                 ],
               ),
