@@ -9,4 +9,13 @@ class BentoDataSourceImpl implements BentoDataSource {
     var response = await http.get(Uri.parse(url));
     return response;
   }
+
+  @override
+  Future<http.Response> getTodaySpecialData() async {
+    String url =
+        'https://gabrielhfdl.github.io/host_api/todayspecialcategory.json';
+
+    var response = await http.get(Uri.parse(url));
+    return response;
+  }
 }

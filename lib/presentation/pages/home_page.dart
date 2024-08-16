@@ -1,8 +1,12 @@
 import 'package:bento_challenge/data/model/shop_by_category_model.dart';
+import 'package:bento_challenge/data/model/today_special_model.dart';
 import 'package:bento_challenge/presentation/bloc/bento_bloc.dart';
-import 'package:bento_challenge/presentation/widgets/carrousel_top_deal_cards.dart';
+import 'package:bento_challenge/presentation/pages/special_item_details_page.dart';
 import 'package:bento_challenge/presentation/widgets/inital_info_cards.dart';
+import 'package:bento_challenge/presentation/widgets/section_title.dart';
 import 'package:bento_challenge/presentation/widgets/shop_by_category_section.dart';
+import 'package:bento_challenge/presentation/widgets/today_special_card.dart';
+import 'package:bento_challenge/presentation/widgets/top_deal_card.dart';
 import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final bentoBloc = Provider.of<BentoBloc>(context, listen: false);
       bentoBloc.getShopByCategory();
+      bentoBloc.getTodaySpecial();
     });
   }
 
@@ -34,7 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _bentoBloc = Provider.of<BentoBloc>(context);
+    final bentoBloc = Provider.of<BentoBloc>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -57,15 +62,15 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          top: 24,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 24,
+          ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -89,15 +94,21 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 24,
             ),
-            const CarouselWidget(),
-            const SizedBox(
-              height: 24,
+            TopDealCard(
+              promotionText: 'Top Deal !',
+              backgroundColor: BentoColors.lightGreen2,
+              image: Image.asset('assets/images/local_shop_icon.png'),
+            ),
+            const SectionTitle(
+              title: 'Shop by category',
+              seeAllItensButton: false,
             ),
             StreamBuilder<List<ShopByCategoryModel>>(
-              stream: _bentoBloc.shopByCategoryStream,
+              stream: bentoBloc.shopByCategoryStream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return SizedBox(
+                    height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data!.length,
@@ -108,6 +119,9 @@ class _HomePageState extends State<HomePage> {
                           child: ShopByCategorySection(
                             title: category.title,
                             imageUrl: category.image,
+                            backgroundColor: category.title == 'Vegan'
+                                ? BentoColors.lightGreen
+                                : BentoColors.primaryGrey,
                           ),
                         );
                       },
@@ -116,11 +130,73 @@ class _HomePageState extends State<HomePage> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Erro: ${snapshot.error}'));
                 } else {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: BentoColors.lightGreen,
+                  ));
                 }
               },
             ),
-          ],
+            const SizedBox(
+              height: 12,
+            ),
+            const SectionTitle(
+              title: 'Today\'s Special',
+              seeAllItensButton: true,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            StreamBuilder<List<TodaySpecialModel>>(
+              stream: bentoBloc.todaySpecialStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return SizedBox(
+                    height: 300,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final item = snapshot.data![index];
+
+                        return TodaySpecialHomeCard(
+                          imageUrl: item.imagesUrl.first,
+                          rating: item.rating.toString(),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SpecialItemDetailPage(
+                                  imageUrl: item.imagesUrl,
+                                  title: item.title,
+                                  rating: item.rating.toString(),
+                                  description: item.description,
+                                  shop: item.shop,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Erro: ${snapshot.error}'));
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: BentoColors.lightGreen,
+                    ),
+                  );
+                }
+              },
+            ),
+          ]),
         ),
       ),
     );

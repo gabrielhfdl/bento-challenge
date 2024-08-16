@@ -1,3 +1,4 @@
+import 'package:bento_challenge/data/model/today_special_model.dart';
 import 'package:bento_challenge/data/repository/bento_repository.dart';
 import 'package:bento_challenge/data/model/shop_by_category_model.dart';
 import 'package:bento_challenge/domain/use_cases/bento_use_cases.dart';
@@ -14,6 +15,16 @@ class BentoUseCasesImpl implements BentoUseCases {
       return itens;
     } catch (e) {
       throw Exception('Error in GetShopByCategoryUseCaseImpl: $e');
+    }
+  }
+
+  @override
+  Future<List<TodaySpecialModel>> getTodaySpecial() {
+    try {
+      final itens = _bentoRepository.getTodaySpecialData();
+      return itens;
+    } catch (e) {
+      throw Exception('Error in GetTodaySpecialUseCaseImpl: $e');
     }
   }
 }

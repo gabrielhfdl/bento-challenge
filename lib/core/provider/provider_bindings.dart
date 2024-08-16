@@ -1,5 +1,3 @@
-// lib/config/providers.dart
-
 import 'package:bento_challenge/data/data_source/bento_data_source.dart';
 import 'package:bento_challenge/data/data_source/bento_data_source_impl.dart';
 import 'package:bento_challenge/data/repository/bento_repository.dart';
