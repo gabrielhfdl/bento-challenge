@@ -27,7 +27,7 @@ class BentoRepositoryImpl implements BentoRepository {
     } else {
       //in real development, we should throw a custom exception
       throw Exception(
-          'Error in BentoRepositoryImpl: statusCode: ${response.statusCode}  body: ${response.body}');
+          'Error in BentoRepositoryImpl getShopByCategoryData: statusCode: ${response.statusCode}  body: ${response.body}');
     }
   }
 
@@ -47,7 +47,7 @@ class BentoRepositoryImpl implements BentoRepository {
       return todaySpecialModelList;
     } else {
       throw Exception(
-          'Error in BentoRepositoryImpl: statusCode: ${response.statusCode}  body: ${response.body}');
+          'Error in BentoRepositoryImpl getTodaySpecialData: statusCode: ${response.statusCode}  body: ${response.body}');
     }
   }
 }

@@ -23,7 +23,7 @@ class TopDealCard extends StatelessWidget {
       ),
       child: Row(children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,39 +35,38 @@ class TopDealCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                promotionItemDescription,
-                style: const TextStyle(
-                    color: BentoColors.primaryBlue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Expanded(
+                child: Text(
+                  promotionItemDescription,
+                  style: const TextStyle(
+                      color: BentoColors.primaryBlue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               const SizedBox(height: 8),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: BentoColors.primaryBlue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: BentoColors.primaryBlue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child: const Text(
-                    'Shop Now',
-                    style:
-                        TextStyle(color: BentoColors.lightGreen, fontSize: 16),
-                  ),
+                ),
+                child: const Text(
+                  'Shop Now',
+                  style: TextStyle(color: BentoColors.lightGreen, fontSize: 16),
                 ),
               ),
             ],
           ),
         ),
-        const Spacer(),
         Expanded(
+          flex: 3,
           child: Stack(
             children: [
               Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.centerRight,
                 child: image,
               )
             ],

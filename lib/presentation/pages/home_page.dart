@@ -10,6 +10,7 @@ import 'package:bento_challenge/presentation/widgets/top_deal_card.dart';
 import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late BentoBloc _bentoBloc;
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -94,10 +96,46 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 24,
             ),
-            TopDealCard(
-              promotionText: 'Top Deal !',
-              backgroundColor: BentoColors.lightGreen2,
-              image: Image.asset('assets/images/local_shop_icon.png'),
+            SizedBox(
+              height: 155,
+              child: PageView(
+                padEnds: true,
+                controller: _pageController,
+                children: [
+                  TopDealCard(
+                    backgroundColor: BentoColors.lightGreen2,
+                    image: Image.asset('assets/images/avogado.png'),
+                    promotionItemDescription: 'FRESH AVOCADO UP TO 15% OFF',
+                  ),
+                  TopDealCard(
+                    backgroundColor: BentoColors.lightGreen2,
+                    image: Image.asset('assets/images/banana.png'),
+                    promotionItemDescription: 'FRESH BANANAS UP TO 20% OFF',
+                  ),
+                  TopDealCard(
+                    backgroundColor: BentoColors.lightGreen2,
+                    image: Image.asset('assets/images/strawberry.png'),
+                    promotionItemDescription: 'FRESH STRAWBERRIES FF',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Center(
+              child: SmoothPageIndicator(
+                controller: _pageController,
+                count: 3,
+                effect: const ExpandingDotsEffect(
+                  activeDotColor: BentoColors.primaryLightGreen,
+                  dotColor: BentoColors.primaryGrey,
+                  dotHeight: 5,
+                  dotWidth: 5,
+                  expansionFactor: 5,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 24,
             ),
             const SectionTitle(
               title: 'Shop by category',
