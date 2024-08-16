@@ -1,6 +1,5 @@
 import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class InitialInfoCards extends StatelessWidget {
   final String title;
@@ -16,41 +15,46 @@ class InitialInfoCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 12),
-      height: 80,
-      decoration: BoxDecoration(
-        color: BentoColors.primaryLightGreen,
-        borderRadius: BorderRadius.circular(10),
+    return InkWell(
+      onTap: () => print(
+        'redirect to route card',
       ),
-      child: Row(children: [
-        Column(
-          children: [
-            const SizedBox(height: 24),
-            SizedBox(
-              width: 50,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: BentoColors.primaryBlue,
-                  fontWeight: FontWeight.bold,
+      child: Container(
+        padding: const EdgeInsets.only(left: 12),
+        height: 80,
+        decoration: BoxDecoration(
+          color: BentoColors.primaryLightGreen,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(children: [
+          Column(
+            children: [
+              const SizedBox(height: 24),
+              SizedBox(
+                width: 50,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: BentoColors.primaryBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const Spacer(),
-        Expanded(
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: image,
-              )
             ],
           ),
-        ),
-      ]),
+          const Spacer(),
+          Expanded(
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: image,
+                )
+              ],
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
