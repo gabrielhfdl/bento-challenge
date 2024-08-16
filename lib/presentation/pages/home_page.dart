@@ -2,6 +2,8 @@ import 'package:bento_challenge/data/model/shop_by_category_model.dart';
 import 'package:bento_challenge/data/model/today_special_model.dart';
 import 'package:bento_challenge/presentation/bloc/bento_bloc.dart';
 import 'package:bento_challenge/presentation/pages/special_item_details_page.dart';
+import 'package:bento_challenge/presentation/widgets/custom_bottom_navigation_bar.dart';
+import 'package:bento_challenge/presentation/widgets/custom_floating_action_button.dart';
 import 'package:bento_challenge/presentation/widgets/inital_info_cards.dart';
 import 'package:bento_challenge/presentation/widgets/section_title.dart';
 import 'package:bento_challenge/presentation/widgets/shop_by_category_section.dart';
@@ -49,7 +51,6 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           'Delivery',
           style: TextStyle(
-            fontFamily: 'Sanseriffic',
             fontSize: 20,
             color: BentoColors.primaryBlue,
             fontWeight: FontWeight.bold,
@@ -64,6 +65,9 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
+      floatingActionButton: const CustomFloatinActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -102,20 +106,30 @@ class _HomePageState extends State<HomePage> {
                 padEnds: true,
                 controller: _pageController,
                 children: [
-                  TopDealCard(
-                    backgroundColor: BentoColors.lightGreen2,
-                    image: Image.asset('assets/images/avogado.png'),
-                    promotionItemDescription: 'FRESH AVOCADO UP TO 15% OFF',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: TopDealCard(
+                      backgroundColor: BentoColors.lightGreen2,
+                      image: Image.asset('assets/images/avogado.png'),
+                      promotionItemDescription: 'FRESH AVOCADO UP TO 15% OFF',
+                    ),
                   ),
-                  TopDealCard(
-                    backgroundColor: BentoColors.lightGreen2,
-                    image: Image.asset('assets/images/banana.png'),
-                    promotionItemDescription: 'BANANA BUNCH UP TO 20% OFF',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: TopDealCard(
+                      backgroundColor: const Color.fromARGB(255, 247, 241, 159),
+                      image: Image.asset('assets/images/banana.png'),
+                      promotionItemDescription: 'BANANA BUNCH UP TO 20% OFF',
+                    ),
                   ),
-                  TopDealCard(
-                    backgroundColor: BentoColors.lightGreen2,
-                    image: Image.asset('assets/images/strawberry.png'),
-                    promotionItemDescription: 'FRESH STRAWBERRY UP TO 10% OFF',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: TopDealCard(
+                      backgroundColor: const Color.fromARGB(255, 247, 173, 163),
+                      image: Image.asset('assets/images/strawberry.png'),
+                      promotionItemDescription:
+                          'FRESH STRAWBERRY UP TO 10% OFF',
+                    ),
                   ),
                 ],
               ),
@@ -203,6 +217,9 @@ class _HomePageState extends State<HomePage> {
                         final item = snapshot.data![index];
 
                         return TodaySpecialHomeCard(
+                          color: item.title == 'Organic Orange Fresh'
+                              ? BentoColors.orangeLight
+                              : BentoColors.lightGreen3,
                           imageUrl: item.imagesUrl.first,
                           rating: item.rating.toString(),
                           onTap: () {
@@ -215,6 +232,8 @@ class _HomePageState extends State<HomePage> {
                                   rating: item.rating.toString(),
                                   description: item.description,
                                   shop: item.shop,
+                                  price: item.price,
+                                  oldPrice: item.oldPrice,
                                 ),
                               ),
                             );

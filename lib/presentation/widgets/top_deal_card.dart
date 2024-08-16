@@ -18,7 +18,7 @@ class TopDealCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: BentoColors.lightGreen2,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(children: [
@@ -53,9 +53,9 @@ class TopDealCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Shop Now',
-                  style: TextStyle(color: BentoColors.lightGreen, fontSize: 16),
+                  style: TextStyle(color: backgroundColor, fontSize: 16),
                 ),
               ),
             ],

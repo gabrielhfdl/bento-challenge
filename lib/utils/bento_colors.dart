@@ -7,4 +7,7 @@ class BentoColors {
   static const Color lightGreen = Color(0xFFBEECC8);
   static const Color lightGreen2 = Color(0xFFF0F5DC);
   static const Color lightBrown = Color.fromARGB(255, 243, 238, 238);
+
+  static const Color orangeLight = Color(0xFFFAF0DC);
+  static const Color lightGreen3 = Color(0xFFE6FADC);
 }
