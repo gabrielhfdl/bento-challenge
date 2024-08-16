@@ -2,6 +2,7 @@ import 'package:bento_challenge/presentation/widgets/custom_app_bar.dart';
 import 'package:bento_challenge/presentation/widgets/rating_widget.dart';
 import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SpecialItemDetailPage extends StatefulWidget {
   final List<String> imageUrl;
@@ -9,6 +10,8 @@ class SpecialItemDetailPage extends StatefulWidget {
   final String rating;
   final String description;
   final String shop;
+  final double price;
+  final double oldPrice;
 
   const SpecialItemDetailPage({
     required this.imageUrl,
@@ -16,6 +19,8 @@ class SpecialItemDetailPage extends StatefulWidget {
     required this.rating,
     required this.description,
     required this.shop,
+    required this.price,
+    required this.oldPrice,
     super.key,
   });
 
@@ -24,6 +29,7 @@ class SpecialItemDetailPage extends StatefulWidget {
 }
 
 class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
+  final PageController _pageController = PageController();
   bool _isFavorite = false;
 
   void _setFavorite() {
@@ -47,7 +53,36 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(child: Text('asdsa')),
+            Expanded(
+              child: SizedBox(
+                height: 500,
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: widget.imageUrl.length,
+                  itemBuilder: (context, index) {
+                    return Image.network(
+                      widget.imageUrl[index],
+                    );
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Center(
+              child: SmoothPageIndicator(
+                controller: _pageController,
+                count: 3,
+                effect: const ExpandingDotsEffect(
+                  activeDotColor: BentoColors.primaryLightGreen,
+                  dotColor: BentoColors.primaryGrey,
+                  dotHeight: 5,
+                  dotWidth: 5,
+                  expansionFactor: 5,
+                ),
+              ),
+            ),
             const SizedBox(height: 16),
             const SizedBox(height: 8),
             Row(
@@ -91,14 +126,63 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
               style: const TextStyle(fontSize: 16),
             ),
             const Spacer(),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Add to Cart'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                minimumSize: const Size.fromHeight(50),
-              ),
-            ),
+            const Divider(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Price',
+                  style: TextStyle(
+                    color: BentoColors.primaryGrey,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      widget.price.toStringAsFixed(2),
+                      style: const TextStyle(
+                        color: BentoColors.primaryBlue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      textAlign: TextAlign.end,
+                      widget.oldPrice.toStringAsFixed(2),
+                      style: TextStyle(
+                        color: Colors.grey[300],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('imagine add cart action');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: BentoColors.primaryLightGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 32),
+                        textStyle: const TextStyle(
+                          color: BentoColors.primaryBlue,
+                          fontSize: 16,
+                        ),
+                      ),
+                      child: const Text(
+                        'Add to Cart',
+                        style: TextStyle(color: BentoColors.primaryBlue),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
           ],
         ),
       ),

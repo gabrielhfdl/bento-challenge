@@ -4,6 +4,8 @@ class TodaySpecialModel {
   final String description;
   final String shop;
   final List<String> imagesUrl;
+  final double price;
+  final double oldPrice;
 
   TodaySpecialModel({
     required this.title,
@@ -11,6 +13,8 @@ class TodaySpecialModel {
     required this.description,
     required this.shop,
     required this.imagesUrl,
+    required this.price,
+    required this.oldPrice,
   });
 
   factory TodaySpecialModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +24,8 @@ class TodaySpecialModel {
       description: json['description'],
       shop: json['shop'],
       imagesUrl: List<String>.from(json['images']),
+      price: json['price'],
+      oldPrice: json['oldPrice'],
     );
   }
 }

@@ -5,11 +5,13 @@ class TodaySpecialHomeCard extends StatelessWidget {
   final String imageUrl;
   final String rating;
   final VoidCallback onTap;
+  final Color color;
 
   const TodaySpecialHomeCard({
     required this.imageUrl,
     required this.rating,
     required this.onTap,
+    required this.color,
     super.key,
   });
 
@@ -18,6 +20,7 @@ class TodaySpecialHomeCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
+        color: color,
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
