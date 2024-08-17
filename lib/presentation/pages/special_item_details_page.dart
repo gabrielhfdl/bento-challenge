@@ -195,6 +195,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Divider(),
                   const Text(
                     'Price',
                     style: TextStyle(
