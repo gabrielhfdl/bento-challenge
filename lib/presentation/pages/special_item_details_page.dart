@@ -122,7 +122,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   'Shop: ${widget.shop}',
                   style: const TextStyle(
                     fontSize: 14,
-                    color: BentoColors.primaryGrey,
+                    color: BentoColors.darkenBlue,
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -156,9 +156,11 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 const Text(
                   'Details',
                   style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: BentoColors.primaryBlue),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: BentoColors.primaryBlue,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -181,7 +183,8 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   const Text(
                     'Price',
                     style: TextStyle(
-                      color: BentoColors.primaryGrey,
+                      color: BentoColors.primaryLightGrey,
+                      fontFamily: 'Poppins',
                     ),
                   ),
                   Row(
@@ -192,6 +195,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                           color: BentoColors.primaryBlue,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
+                          fontFamily: 'Poppins',
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -200,6 +204,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                         '\$${widget.oldPrice.toStringAsFixed(2)}',
                         style: TextStyle(
                           color: Colors.grey[300],
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           decoration: TextDecoration.lineThrough,
@@ -208,7 +213,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                       const Spacer(),
                       ElevatedButton(
                         onPressed: () {
-                          print('imagine add cart action');
+                          print('add to cart action');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: BentoColors.primaryLightGreen,
@@ -225,7 +230,10 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                         ),
                         child: const Text(
                           'Add to Cart',
-                          style: TextStyle(color: BentoColors.primaryBlue),
+                          style: TextStyle(
+                            color: BentoColors.primaryBlue,
+                            fontFamily: 'Poppins',
+                          ),
                         ),
                       )
                     ],

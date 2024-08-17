@@ -31,6 +31,9 @@ flutter:
     - assets/fonts/
   
   fonts:
-    - family: Sanseriffic
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/Sanseriffic.otf
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700

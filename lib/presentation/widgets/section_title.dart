@@ -25,11 +25,15 @@ class SectionTitle extends StatelessWidget {
         ),
         const Spacer(),
         seeAllItensButton
-            ? const Text('See all',
+            ? const Text(
+                'See all',
                 style: TextStyle(
-                    color: BentoColors.primaryLightGreen,
-                    fontWeight: FontWeight.bold))
-            : Container(),
+                  color: BentoColors.primaryLightGreen,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
+                ),
+              )
+            : const SizedBox.shrink(),
       ],
     );
   }

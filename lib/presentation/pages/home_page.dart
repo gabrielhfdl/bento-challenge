@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(
             fontSize: 20,
             color: BentoColors.primaryBlue,
-            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
           ),
         ),
         actions: const [
@@ -206,6 +206,8 @@ class _HomePageState extends State<HomePage> {
                   return SizedBox(
                     height: 300,
                     child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -218,7 +220,7 @@ class _HomePageState extends State<HomePage> {
 
                         return TodaySpecialHomeCard(
                           color: item.title == 'Organic Orange Fresh'
-                              ? BentoColors.orangeLight
+                              ? BentoColors.lightOrange
                               : BentoColors.lightGreen3,
                           imageUrl: item.imagesUrl.first,
                           rating: item.rating.toString(),

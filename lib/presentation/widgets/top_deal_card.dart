@@ -41,7 +41,7 @@ class TopDealCard extends StatelessWidget {
                   style: const TextStyle(
                       color: BentoColors.primaryBlue,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16),
+                      fontSize: 18),
                 ),
               ),
               const SizedBox(height: 8),
@@ -56,7 +56,10 @@ class TopDealCard extends StatelessWidget {
                 child: const Text(
                   'Shop Now',
                   style: TextStyle(
-                      color: BentoColors.primaryLightGreen, fontSize: 16),
+                    color: BentoColors.primaryLightGreen,
+                    fontSize: 14,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
             ],

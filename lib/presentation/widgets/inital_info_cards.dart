@@ -36,6 +36,7 @@ class InitialInfoCards extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     color: BentoColors.primaryBlue,
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
                   ),
                 ),

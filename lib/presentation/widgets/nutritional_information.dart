@@ -1,3 +1,4 @@
+import 'package:bento_challenge/utils/bento_colors.dart';
 import 'package:flutter/material.dart';
 
 class NutritionalInformation extends StatelessWidget {
@@ -33,7 +34,8 @@ class NutritionalInformation extends StatelessWidget {
           label,
           style: const TextStyle(
             fontSize: 14,
-            color: Colors.blueGrey,
+            color: BentoColors.darkenBlue,
+            fontFamily: 'Poppins',
           ),
         ),
       ],
