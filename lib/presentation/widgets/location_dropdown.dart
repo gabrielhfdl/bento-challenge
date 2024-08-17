@@ -51,7 +51,8 @@ class LocationDropdownState extends State<LocationDropdown> {
     if (placemarks.isNotEmpty) {
       Placemark place = placemarks[0];
       setState(() {
-        _location = "${place.locality}, ${place.country}";
+        print(place);
+        _location = "${place.subAdministrativeArea}, ${place.country}";
       });
     }
   }
