@@ -65,8 +65,8 @@ class LocationDropdownState extends State<LocationDropdown> {
           'Delivery',
           style: TextStyle(
             color: BentoColors.primaryBlue,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
             fontFamily: 'Poppins',
           ),
         ),
