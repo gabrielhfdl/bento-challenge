@@ -63,7 +63,7 @@ class LocationDropdownState extends State<LocationDropdown> {
       children: [
         const Text('Delivery',
             style: TextStyle(
-              color: Colors.black,
+              color: BentoColors.primaryBlue,
               fontSize: 16,
               fontFamily: 'Poppins',
             )),
@@ -72,12 +72,12 @@ class LocationDropdownState extends State<LocationDropdown> {
             Text(
               _location,
               style: const TextStyle(
-                color: Colors.grey,
+                color: BentoColors.secondaryGrey,
                 fontSize: 12,
                 fontFamily: 'Poppins',
               ),
             ),
-            const Icon(Icons.arrow_drop_down_rounded,
+            const Icon(Icons.keyboard_arrow_down,
                 color: BentoColors.darkenBlue),
           ],
         ),

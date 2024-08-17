@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bento_challenge/data/model/shop_by_category_model.dart';
 import 'package:bento_challenge/data/model/today_special_model.dart';
 import 'package:bento_challenge/presentation/bloc/bento_bloc.dart';
@@ -25,6 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late BentoBloc _bentoBloc;
   final PageController _pageController = PageController();
+  late Timer _timer;
 
   @override
   void initState() {
@@ -34,11 +37,23 @@ class _HomePageState extends State<HomePage> {
       bentoBloc.getShopByCategory();
       bentoBloc.getTodaySpecial();
     });
+
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (_pageController.hasClients) {
+        final page = (_pageController.page ?? 0) + 1;
+        _pageController.animateToPage(
+          page.toInt() % 3,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   @override
   void dispose() {
     _bentoBloc.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -55,7 +70,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
-              backgroundColor: BentoColors.lightGreen,
+              backgroundColor: BentoColors.lightGreen4,
               radius: 18,
               child: ClipOval(
                 child: Image.asset(
@@ -88,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                   child: InitialInfoCards(
                     title: 'ORDER AGAIN',
                     color: BentoColors.primaryBlue,
-                    image: Image.asset('assets/images/order_again_icon.png'),
+                    image: Image.asset(
+                      'assets/images/order_again_icon.png',
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -107,6 +124,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 155,
               child: PageView(
+                pageSnapping: true,
                 padEnds: true,
                 controller: _pageController,
                 children: [
