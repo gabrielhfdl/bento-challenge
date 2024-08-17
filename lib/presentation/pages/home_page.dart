@@ -255,18 +255,21 @@ class _HomePageState extends State<HomePage> {
                             imageUrl: item.imagesUrl.first,
                             rating: item.rating.toString(),
                             onTap: () {
+                              final specialItem = TodaySpecialModel(
+                                title: item.title,
+                                rating: item.rating,
+                                description: item.description,
+                                shop: item.shop,
+                                price: item.price,
+                                oldPrice: item.oldPrice,
+                                imagesUrl: item.imagesUrl,
+                              );
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SpecialItemDetailPage(
-                                    imageUrl: item.imagesUrl,
-                                    title: item.title,
-                                    rating: item.rating.toString(),
-                                    description: item.description,
-                                    shop: item.shop,
-                                    price: item.price,
-                                    oldPrice: item.oldPrice,
-                                  ),
+                                  builder: (context) =>
+                                      SpecialItemDetailPage(item: specialItem),
                                 ),
                               );
                             },

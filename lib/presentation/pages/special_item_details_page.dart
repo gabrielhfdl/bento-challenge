@@ -1,3 +1,4 @@
+import 'package:bento_challenge/data/model/today_special_model.dart';
 import 'package:bento_challenge/presentation/widgets/custom_app_bar.dart';
 import 'package:bento_challenge/presentation/widgets/nutritional_information.dart';
 import 'package:bento_challenge/presentation/widgets/rating_widget.dart';
@@ -7,22 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SpecialItemDetailPage extends StatefulWidget {
-  final List<String> imageUrl;
-  final String title;
-  final String rating;
-  final String description;
-  final String shop;
-  final double price;
-  final double oldPrice;
+  final TodaySpecialModel item;
 
   const SpecialItemDetailPage({
-    required this.imageUrl,
-    required this.title,
-    required this.rating,
-    required this.description,
-    required this.shop,
-    required this.price,
-    required this.oldPrice,
+    required this.item,
     super.key,
   });
 
@@ -62,7 +51,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   height: 300,
                   child: PageView.builder(
                     controller: _pageController,
-                    itemCount: widget.imageUrl.length,
+                    itemCount: widget.item.imagesUrl.length,
                     itemBuilder: (context, index) {
                       return AnimatedBuilder(
                         animation: _pageController,
@@ -76,7 +65,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                             child: Transform.scale(
                               scale: value,
                               child: CachedNetworkImage(
-                                imageUrl: widget.imageUrl[index],
+                                imageUrl: widget.item.imagesUrl[index],
                                 placeholder: (context, url) => const Center(
                                     child: CircularProgressIndicator(
                                   color: BentoColors.primaryLightGreen,
@@ -98,7 +87,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 Center(
                   child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: widget.imageUrl.length,
+                    count: widget.item.imagesUrl.length,
                     effect: const ExpandingDotsEffect(
                       activeDotColor: BentoColors.primaryLightGreen,
                       dotColor: BentoColors.primaryGrey,
@@ -115,7 +104,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.title,
+                        widget.item.title,
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -125,11 +114,11 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                         maxLines: 2,
                       ),
                     ),
-                    RatingWidget(rating: widget.rating),
+                    RatingWidget(rating: widget.item.rating.toString()),
                   ],
                 ),
                 Text(
-                  'Shop: ${widget.shop}',
+                  'Shop: ${widget.item.shop}',
                   style: const TextStyle(
                     fontSize: 14,
                     color: BentoColors.darkenBlue,
@@ -176,7 +165,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  widget.description,
+                  widget.item.description,
                   style: const TextStyle(
                     fontSize: 14,
                     fontFamily: 'Poppins',
@@ -212,7 +201,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: '\$${widget.price.toStringAsFixed(2)}',
+                              text: '\$${widget.item.price.toStringAsFixed(2)}',
                               style: const TextStyle(
                                 color: BentoColors.primaryBlue,
                                 fontWeight: FontWeight.bold,
@@ -229,7 +218,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                             WidgetSpan(
                               alignment: PlaceholderAlignment.bottom,
                               child: Text(
-                                '\$${widget.oldPrice.toStringAsFixed(2)}',
+                                '\$${widget.item.oldPrice.toStringAsFixed(2)}',
                                 style: TextStyle(
                                   color: Colors.grey[400],
                                   fontSize: 16,
