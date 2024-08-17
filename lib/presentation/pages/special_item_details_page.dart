@@ -98,7 +98,6 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const SizedBox(height: 8),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
