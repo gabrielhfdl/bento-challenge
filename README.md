@@ -40,7 +40,8 @@ BentoDataSource: Provides application data.
 BentoRepository: Implements data access logic using BentoDataSource.
 BentoUseCasesImpl: Contains business rules and uses BentoRepository.
 BentoBloc: Manages the UI state and interacts with BentoUseCasesImpl.
-<span style="color: #007BFF;">How to Run the App</span>
+
+## <span style="color: #007BFF;">How to Run the App</span>
 Clone the repository: git clone https://github.com/gabrielhfdl/bento-challenge.git
 
 Navigate to the project directory: cd bento_challenge
@@ -48,10 +49,11 @@ Navigate to the project directory: cd bento_challenge
 Install the dependencies: flutter pub get
 
 Run the app: flutter run
+
 -
 -
 -
-**pt-BR**
+**pt-br**
 # Bento Challenge
 
 ## <span style="color: #007BFF;">Descrição</span>
