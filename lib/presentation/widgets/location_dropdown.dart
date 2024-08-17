@@ -26,19 +26,19 @@ class LocationDropdownState extends State<LocationDropdown> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Serviço de localização está desativado.');
+      return Future.error('Location service is turned off.');
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Permissão de localização negada.');
+        return Future.error('Location permission denied.');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Permissão de localização permanentemente negada.');
+      return Future.error('Location permission permanently denied.');
     }
 
     Position position = await Geolocator.getCurrentPosition();
@@ -61,12 +61,15 @@ class LocationDropdownState extends State<LocationDropdown> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Delivery',
-            style: TextStyle(
-              color: BentoColors.primaryBlue,
-              fontSize: 16,
-              fontFamily: 'Poppins',
-            )),
+        const Text(
+          'Delivery',
+          style: TextStyle(
+            color: BentoColors.primaryBlue,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
+          ),
+        ),
         Row(
           children: [
             Text(
@@ -77,8 +80,10 @@ class LocationDropdownState extends State<LocationDropdown> {
                 fontFamily: 'Poppins',
               ),
             ),
-            const Icon(Icons.keyboard_arrow_down,
-                color: BentoColors.darkenBlue),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              color: BentoColors.darkenBlue,
+            ),
           ],
         ),
       ],

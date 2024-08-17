@@ -13,9 +13,7 @@ class BentoColors {
   static const Color secondaryGrey = Color(0xFF818B90);
 
   static const Color lightBrown = Color.fromARGB(255, 243, 238, 238);
-
   static const Color lightOrange = Color(0xFFFAF0DC);
-
   static const Color lightYellow = Color(0xFFF0F0C2);
 
   static const Color primaryBlue = Color(0xFF04294F);

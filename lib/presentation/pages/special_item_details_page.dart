@@ -54,11 +54,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
         children: [
           SingleChildScrollView(
             padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              top: 16.0,
-              bottom: 120.0,
-            ),
+                left: 16.0, right: 16.0, top: 16.0, bottom: 120.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,15 +64,30 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                     controller: _pageController,
                     itemCount: widget.imageUrl.length,
                     itemBuilder: (context, index) {
-                      return CachedNetworkImage(
-                        imageUrl: widget.imageUrl[index],
-                        placeholder: (context, url) => const Center(
-                            child: CircularProgressIndicator(
-                          color: BentoColors.primaryLightGreen,
-                        )),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
+                      return AnimatedBuilder(
+                        animation: _pageController,
+                        builder: (context, child) {
+                          double value = 1.0;
+                          if (_pageController.position.haveDimensions) {
+                            value = _pageController.page! - index;
+                            value = (1 - (value.abs() * 0.2)).clamp(0.0, 1.0);
+                          }
+                          return Center(
+                            child: Transform.scale(
+                              scale: value,
+                              child: CachedNetworkImage(
+                                imageUrl: widget.imageUrl[index],
+                                placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator(
+                                  color: BentoColors.primaryLightGreen,
+                                )),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
@@ -141,15 +152,13 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                           iconData: Icons.eco_outlined,
                           backgroundColor: BentoColors.lightGreen4),
                       NutritionalInformation(
-                        label: "Halal Food",
-                        iconData: Icons.no_meals,
-                        backgroundColor: BentoColors.lightYellow,
-                      ),
+                          label: "Halal Food",
+                          iconData: Icons.no_meals,
+                          backgroundColor: BentoColors.lightYellow),
                       NutritionalInformation(
-                        label: "Gluten-free",
-                        iconData: Icons.grain,
-                        backgroundColor: BentoColors.lightBlue,
-                      ),
+                          label: "Gluten-free",
+                          iconData: Icons.grain,
+                          backgroundColor: BentoColors.lightBlue),
                     ],
                   ),
                 ),
@@ -169,9 +178,10 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 Text(
                   widget.description,
                   style: const TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Poppins',
-                      color: BentoColors.darkenBlue),
+                    fontSize: 14,
+                    fontFamily: 'Poppins',
+                    color: BentoColors.darkenBlue,
+                  ),
                 ),
               ],
             ),
@@ -250,10 +260,11 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                         child: const Text(
                           'Add to Cart',
                           style: TextStyle(
-                              color: BentoColors.primaryBlue,
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
+                            color: BentoColors.primaryBlue,
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       )
                     ],
