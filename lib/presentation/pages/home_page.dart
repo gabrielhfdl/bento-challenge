@@ -5,6 +5,7 @@ import 'package:bento_challenge/presentation/pages/special_item_details_page.dar
 import 'package:bento_challenge/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bento_challenge/presentation/widgets/custom_floating_action_button.dart';
 import 'package:bento_challenge/presentation/widgets/inital_info_cards.dart';
+import 'package:bento_challenge/presentation/widgets/location_dropdown.dart';
 import 'package:bento_challenge/presentation/widgets/section_title.dart';
 import 'package:bento_challenge/presentation/widgets/shop_by_category_section.dart';
 import 'package:bento_challenge/presentation/widgets/today_special_card.dart';
@@ -45,15 +46,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final bentoBloc = Provider.of<BentoBloc>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Delivery',
-          style: TextStyle(
-            fontSize: 20,
-            color: BentoColors.primaryBlue,
-            fontFamily: 'Poppins',
-          ),
-        ),
+        title: const LocationDropdown(),
+        backgroundColor: Colors.white,
+        elevation: 0,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
