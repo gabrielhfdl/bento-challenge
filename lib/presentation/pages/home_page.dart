@@ -45,9 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final bentoBloc = Provider.of<BentoBloc>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(
           'Delivery',
           style: TextStyle(
@@ -61,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               backgroundColor: BentoColors.lightGreen,
-              radius: 24,
+              radius: 18,
               child: ClipOval(
                 child: Image.asset(
                   'assets/images/avatar.png',

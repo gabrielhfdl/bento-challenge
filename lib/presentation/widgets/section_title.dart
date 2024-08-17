@@ -20,7 +20,7 @@ class SectionTitle extends StatelessWidget {
           style: const TextStyle(
             fontSize: 20,
             color: BentoColors.primaryBlue,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w900,
           ),
         ),
         const Spacer(),
@@ -28,10 +28,9 @@ class SectionTitle extends StatelessWidget {
             ? const Text(
                 'See all',
                 style: TextStyle(
-                  color: BentoColors.primaryLightGreen,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-                ),
+                    color: BentoColors.primaryLightGreen,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500),
               )
             : const SizedBox.shrink(),
       ],
