@@ -56,11 +56,20 @@ class _HomePageState extends State<HomePage> {
             fontFamily: 'Poppins',
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               backgroundColor: BentoColors.lightGreen,
+              radius: 24,
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/avatar.png',
+                  fit: BoxFit.contain,
+                  width: 80,
+                  height: 80,
+                ),
+              ),
             ),
           )
         ],
@@ -167,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         final category = snapshot.data![index];
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.only(right: 12.0),
                           child: ShopByCategorySection(
                             title: category.title,
                             imageUrl: category.image,
@@ -204,7 +213,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return SizedBox(
-                    height: 300,
+                    height: 200,
                     child: GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

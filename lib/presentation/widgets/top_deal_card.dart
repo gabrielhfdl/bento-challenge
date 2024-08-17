@@ -58,6 +58,7 @@ class TopDealCard extends StatelessWidget {
                   style: TextStyle(
                     color: BentoColors.primaryLightGreen,
                     fontSize: 14,
+                    fontWeight: FontWeight.w600,
                     fontFamily: 'Poppins',
                   ),
                 ),

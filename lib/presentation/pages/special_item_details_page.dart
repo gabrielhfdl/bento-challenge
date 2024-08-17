@@ -57,8 +57,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
               left: 16.0,
               right: 16.0,
               top: 16.0,
-              bottom:
-                  120.0, // padding para evitar sobreposição com a coluna fixa
+              bottom: 120.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +87,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 Center(
                   child: SmoothPageIndicator(
                     controller: _pageController,
-                    count: 3,
+                    count: widget.imageUrl.length,
                     effect: const ExpandingDotsEffect(
                       activeDotColor: BentoColors.primaryLightGreen,
                       dotColor: BentoColors.primaryGrey,
@@ -123,6 +122,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                   style: const TextStyle(
                     fontSize: 14,
                     color: BentoColors.darkenBlue,
+                    fontFamily: 'Poppins',
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -153,6 +153,9 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 12,
+                ),
                 const Text(
                   'Details',
                   style: TextStyle(
@@ -165,16 +168,18 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 const SizedBox(height: 8),
                 Text(
                   widget.description,
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Poppins',
+                      color: BentoColors.darkenBlue),
                 ),
-                const Divider(),
               ],
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              color: Colors.white, // Fundo branco para a coluna fixa
+              color: Colors.white,
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -185,29 +190,46 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                     style: TextStyle(
                       color: BentoColors.primaryLightGrey,
                       fontFamily: 'Poppins',
+                      fontSize: 14,
+                      height: 1.0,
                     ),
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        '\$${widget.price.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          color: BentoColors.primaryBlue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        textAlign: TextAlign.end,
-                        '\$${widget.oldPrice.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          color: Colors.grey[300],
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          decoration: TextDecoration.lineThrough,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '\$${widget.price.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                color: BentoColors.primaryBlue,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 26,
+                              ),
+                              children: const [
+                                WidgetSpan(
+                                  child: SizedBox(
+                                    width: 8,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            WidgetSpan(
+                              alignment: PlaceholderAlignment.bottom,
+                              child: Text(
+                                '\$${widget.oldPrice.toStringAsFixed(2)}',
+                                style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontSize: 16,
+                                  decoration: TextDecoration.lineThrough,
+                                  decorationColor:
+                                      const Color.fromARGB(166, 158, 158, 158),
+                                  decorationThickness: 2,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const Spacer(),
@@ -221,19 +243,17 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 32),
-                          textStyle: const TextStyle(
-                            color: BentoColors.primaryBlue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            vertical: 12,
+                            horizontal: 40,
                           ),
                         ),
                         child: const Text(
                           'Add to Cart',
                           style: TextStyle(
-                            color: BentoColors.primaryBlue,
-                            fontFamily: 'Poppins',
-                          ),
+                              color: BentoColors.primaryBlue,
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
                         ),
                       )
                     ],
@@ -241,7 +261,7 @@ class _SpecialItemDetailPageState extends State<SpecialItemDetailPage> {
                 ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );

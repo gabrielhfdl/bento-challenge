@@ -36,7 +36,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         ),
       ],
       selectedItemColor: BentoColors.primaryLightGreen,
-      unselectedItemColor: BentoColors.lightGreen,
+      backgroundColor: Colors.white,
+      unselectedItemColor: BentoColors.lightGreen3,
       type: BottomNavigationBarType.fixed,
     );
   }
