@@ -51,7 +51,7 @@ A injeção de dependências é gerenciada pela classe <span style="color: #28A7
 
 Clone o repositório:
 
-git clone https://github.com/seu-usuario/bento_challenge.git
+git clone https://github.com/gabrielhfdl/bento-challenge.git
 
 Navegue até o diretório do projeto:
 
